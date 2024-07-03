@@ -1,0 +1,13 @@
+*.cfg
+*.gz
+*.out
+*.repo
+*.rpm
+*.whl
+*.whl
+*.zip
+*[0-9]
+*\#*
+*~
+rsshrepo
+rpmbuild
