@@ -1,0 +1,16 @@
+diff -pruN rssh-2.3.4.orig/Makefile.in rssh-2.3.4/Makefile.in
+--- rssh-2.3.4.orig/Makefile.in	2012-11-27 01:19:34.000000000 +0100
++++ rssh-2.3.4/Makefile.in	2012-11-28 18:21:03.154903684 +0100
+@@ -727,10 +727,10 @@ uninstall-man: uninstall-man1 uninstall-
+ 
+ 
+ .c.o:
+-	$(CC) -c $(DEFS) $(ourdefs) $(AM_CFLAGS) $(CPPFLAGS) $(LDFLAGS) $<
++	$(CC) -c $(DEFS) $(ourdefs) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $<
+ 
+ install-exec-hook:
+-	chmod u+s $(libexecdir)/rssh_chroot_helper
++	chmod u+s $(DESTDIR)$(libexecdir)/rssh_chroot_helper
+ 
+ rpm:	dist
+ 	rpmbuild -ta --sign $(base).tar.gz
