@@ -1,0 +1,26 @@
+diff --git a/Makefile.local.old b/Makefile.local
+index de4c885..0c443ee 100644
+--- a/Makefile.local.old
++++ b/Makefile.local
+@@ -39,7 +39,7 @@
+ # Add any local definitions you want pass to the compiler to DEFS_LOCAL
+ # below.  This includes those items found in "config/config.h".
+ #
+-DEFS_LOCAL	= -O2 -g -pipe -Wall -D_POSIX_SOURCE -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
++DEFS_LOCAL	= -O2 -g -pipe -Wall -D_POSIX_SOURCE -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -fPIC
+ 
+ #
+ # Add any local libraries that your system might need to LIBS_LOCAL below.
+diff --git a/rdist/Makefile.old b/rdist/Makefile
+index cded264..5f3843e 100644
+--- a/rdist/Makefile.old
++++ b/rdist/Makefile
+@@ -1,7 +1,7 @@
+ #	@(#)Makefile	5.11 (Berkeley) 3/12/91
+ 
+ PROG=	rdist
+-CFLAGS = -O2 -g -pipe -Wall -D_POSIX_SOURCE -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
++CFLAGS = -O2 -g -pipe -Wall -D_POSIX_SOURCE -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -fPIC
+ 
+ SRCS=	docmd.c expand.c lookup.c main.c server.c
+ OBJS=	docmd.o expand.o lookup.o main.o server.o gram.o rcmd.o

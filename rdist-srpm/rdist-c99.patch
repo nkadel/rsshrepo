@@ -1,0 +1,14 @@
+Enable re_exec, re_comp prototypes in glibc's <regex.h>.  See
+rdist-6.1.5-cleanup.patch.
+
+diff -ur rdist-6.1.5.orig/rdist/defs.h rdist-6.1.5/rdist/defs.h
+--- rdist-6.1.5.orig/rdist/defs.h	2022-12-19 12:03:27.646080352 +0100
++++ rdist-6.1.5/rdist/defs.h	2022-12-19 12:49:42.034631472 +0100
+@@ -52,6 +52,7 @@
+ #include <pwd.h>
+ #include <grp.h>
+ #include <signal.h>
++#define _REGEX_RE_COMP
+ #include <regex.h>
+ #include "pathnames.h"
+ 
