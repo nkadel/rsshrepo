@@ -12,7 +12,7 @@ MOCKS+=rsshrepo-f40-x86_64
 MOCKCFGS+=$(MOCKS)
 
 #REPOBASEDIR=/var/www/linux/rsshrepo
-REPOBASEDIR:=`/bin/pwd`/../rssrepo
+REPOBASEDIR:=`/bin/pwd`/../rsshrepo
 
 SPEC := `ls *.spec`
 

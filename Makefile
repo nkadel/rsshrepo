@@ -7,7 +7,9 @@ REPOBASE=file://$(PWD)
 
 
 # EPEL built
+RSSHPKGS+=cvs-srpm
 RSSHPKGS+=rdist-srpm
+# Requires cvs and rdist
 RSSHPKGS+=rssh-srpm
 
 REPOS+=rsshrepo/el/9
@@ -49,9 +51,11 @@ install clean getsrc build srpm src.rpm::
 #	@[ -d $@/.git ] || \
 #	     git submodule update --init $@
 
+# Dependencies of libraries on other libraries for compilation
+
 # Actually build in directories
-.PHONY: $(RSSHPKGS)
-$(RSSHPKGS)::
+.PHONY: $(AWXKITPKGS)
+$(AWXKITPKGS)::
 	(cd $@ && $(MAKE) $(MLAGS) install)
 
 repodirs: $(REPOS) $(REPODIRS)
@@ -77,78 +81,78 @@ $(MOCKCFGS)::
 	@echo "include('/etc/mock/$@')" | tee $@
 
 # packages-microsoft-com-prod added for /bin/pwsh
-rsshrepo-9-x86_64.cfg: alma+epel-9-x86_64.cfg
+awxkitrepo-9-x86_64.cfg: alma+epel-9-x86_64.cfg
 	@echo Generating $@ from $?
 	@echo "include('$?')" | tee $@
-	@echo "config_opts['root'] = 'rsshrepo-{{ releasever }}-{{ target_arch }}'" | tee -a $@
+	@echo "config_opts['root'] = 'awxkitrepo-{{ releasever }}-{{ target_arch }}'" | tee -a $@
 	@echo "config_opts['dnf.conf'] += \"\"\"" | tee -a $@
-	@echo '[rsshrepo]' | tee -a $@
-	@echo 'name=rsshrepo' | tee -a $@
+	@echo '[awxkitrepo]' | tee -a $@
+	@echo 'name=awxkitrepo' | tee -a $@
 	@echo 'enabled=1' | tee -a $@
-	@echo 'baseurl=$(REPOBASE)/rsshrepo/el/9/x86_64/' | tee -a $@
+	@echo 'baseurl=$(REPOBASE)/awxkitrepo/el/9/x86_64/' | tee -a $@
 	@echo 'skip_if_unavailable=False' | tee -a $@
 	@echo 'metadata_expire=1s' | tee -a $@
 	@echo 'gpgcheck=0' | tee -a $@
 	@echo '"""' | tee -a $@
 
-rsshrepo-10-x86_64.cfg: alma+epel-10-x86_64.cfg
+awxkitrepo-10-x86_64.cfg: alma+epel-10-x86_64.cfg
 	@echo Generating $@ from $?
 	@echo "include('$?')" | tee $@
-	@echo "config_opts['root'] = 'rsshrepo-{{ releasever }}-{{ target_arch }}'" | tee -a $@
+	@echo "config_opts['root'] = 'awxkitrepo-{{ releasever }}-{{ target_arch }}'" | tee -a $@
 	@echo "config_opts['dnf.conf'] += \"\"\"" | tee -a $@
-	@echo '[rsshrepo]' | tee -a $@
-	@echo 'name=rsshrepo' | tee -a $@
+	@echo '[awxkitrepo]' | tee -a $@
+	@echo 'name=awxkitrepo' | tee -a $@
 	@echo 'enabled=1' | tee -a $@
-	@echo 'baseurl=$(REPOBASE)/rsshrepo/el/10/x86_64/' | tee -a $@
+	@echo 'baseurl=$(REPOBASE)/awxkitrepo/el/10/x86_64/' | tee -a $@
 	@echo 'skip_if_unavailable=False' | tee -a $@
 	@echo 'metadata_expire=1s' | tee -a $@
 	@echo 'gpgcheck=0' | tee -a $@
 	@echo '"""' | tee -a $@
 
-rsshrepo-f40-x86_64.cfg: /etc/mock/fedora-40-x86_64.cfg
+awxkitrepo-f40-x86_64.cfg: /etc/mock/fedora-40-x86_64.cfg
 	@echo Generating $@ from $?
 	@echo "include('$?')" | tee $@
-	@echo "config_opts['root'] = 'rsshrepo-f{{ releasever }}-{{ target_arch }}'" | tee -a $@
+	@echo "config_opts['root'] = 'awxkitrepo-f{{ releasever }}-{{ target_arch }}'" | tee -a $@
 	@echo "config_opts['dnf.conf'] += \"\"\"" | tee -a $@
-	@echo '[rsshrepo]' | tee -a $@
-	@echo 'name=rsshrepo' | tee -a $@
+	@echo '[awxkitrepo]' | tee -a $@
+	@echo 'name=awxkitrepo' | tee -a $@
 	@echo 'enabled=1' | tee -a $@
-	@echo 'baseurl=$(REPOBASE)/rsshrepo/fedora/40/x86_64/' | tee -a $@
+	@echo 'baseurl=$(REPOBASE)/awxkitrepo/fedora/40/x86_64/' | tee -a $@
 	@echo 'skip_if_unavailable=False' | tee -a $@
 	@echo 'metadata_expire=1s' | tee -a $@
 	@echo 'gpgcheck=0' | tee -a $@
 	@echo '"""' | tee -a $@
 
-rsshrepo-rawhide-x86_64.cfg: /etc/mock/fedora-rawhide-x86_64.cfg
+awxkitrepo-rawhide-x86_64.cfg: /etc/mock/fedora-rawhide-x86_64.cfg
 	@echo Generating $@ from $?
 	@echo "include('$?')" | tee $@
-	@echo "config_opts['root'] = 'rsshrepo-rawhide-{{ target_arch }}'" | tee -a $@
+	@echo "config_opts['root'] = 'awxkitrepo-rawhide-{{ target_arch }}'" | tee -a $@
 	@echo "config_opts['dnf.conf'] += \"\"\"" | tee -a $@
-	@echo '[rsshrepo]' | tee -a $@
-	@echo 'name=rsshrepo' | tee -a $@
+	@echo '[awxkitrepo]' | tee -a $@
+	@echo 'name=awxkitrepo' | tee -a $@
 	@echo 'enabled=1' | tee -a $@
-	@echo 'baseurl=$(REPOBASE)/rsshrepo/fedora/rawhide/x86_64/' | tee -a $@
+	@echo 'baseurl=$(REPOBASE)/awxkitrepo/fedora/rawhide/x86_64/' | tee -a $@
 	@echo 'skip_if_unavailable=False' | tee -a $@
 	@echo 'metadata_expire=1s' | tee -a $@
 	@echo 'gpgcheck=0' | tee -a $@
 	@echo '"""' | tee -a $@
 
-rsshrepo-amz2023-x86_64.cfg: /etc/mock/amazonlinux-2023-x86_64.cfg
+awxkitrepo-amz2023-x86_64.cfg: /etc/mock/amazonlinux-2023-x86_64.cfg
 	@echo Generating $@ from $?
 	@echo "include('$?')" | tee $@
-	@echo "config_opts['root'] = 'rsshrepo-amz2023-{{ target_arch }}'" | tee -a $@
+	@echo "config_opts['root'] = 'awxkitrepo-amz2023-{{ target_arch }}'" | tee -a $@
 	@echo "config_opts['dnf.conf'] += \"\"\"" | tee -a $@
-	@echo '[rsshrepo]' | tee -a $@
-	@echo 'name=rsshrepo' | tee -a $@
+	@echo '[awxkitrepo]' | tee -a $@
+	@echo 'name=awxkitrepo' | tee -a $@
 	@echo 'enabled=1' | tee -a $@
-	@echo 'baseurl=$(REPOBASE)/rsshrepo/amazon/2023/x86_64/' | tee -a $@
+	@echo 'baseurl=$(REPOBASE)/awxkitrepo/amazon/2023/x86_64/' | tee -a $@
 	@echo 'skip_if_unavailable=False' | tee -a $@
 	@echo 'metadata_expire=1s' | tee -a $@
 	@echo 'gpgcheck=0' | tee -a $@
 	@echo '"""' | tee -a $@
 
-repo: rsshrepo.repo
-rsshrepo.repo:: Makefile rsshrepo.repo.in
+repo: awxkitrepo.repo
+awxkitrepo.repo:: Makefile awxkitrepo.repo.in
 	if [ -s /etc/fedora-release ]; then \
 		cat $@.in | \
 			sed "s|@REPOBASEDIR@/|$(PWD)/|g" | \
@@ -162,7 +166,7 @@ rsshrepo.repo:: Makefile rsshrepo.repo.in
 		exit 1; \
 	fi
 
-rsshrepo.repo::
+awxkitrepo.repo::
 	@cmp -s $@ /etc/yum.repos.d/$@ || \
 	    diff -u $@ /etc/yum.repos.d/$@
 
@@ -170,19 +174,19 @@ clean::
 	find . -name \*~ -exec rm -f {} \;
 	rm -f *.cfg
 	rm -f *.out
-	@for name in $(RSSHPKGS); do \
+	@for name in $(AWXKITPKGS); do \
 	    $(MAKE) -C $$name clean; \
 	done
 
 distclean: clean
 	rm -rf $(REPOS)
-	rm -rf rsshrepo
-	@for name in $(RSSHPKGS); do \
+	rm -rf awxkitrepo
+	@for name in $(AWXKITPKGS); do \
 	    (cd $$name; git clean -x -d -f); \
 	done
 
 maintainer-clean: distclean
-	rm -rf $(RSSHPKGS)
-	@for name in $(RSSHPKGS); do \
+	rm -rf $(AWXKITPKGS)
+	@for name in $(AWXKITPKGS); do \
 	    (cd $$name; git clean -x -d -f); \
 	done

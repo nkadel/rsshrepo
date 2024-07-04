@@ -1,5 +1,5 @@
 #
-# Build mock and local RPM versions of tools for awxkit
+# Build mock and local RPM versions of tools for rssh
 #
 
 # Assure that sorting is case sensitive
@@ -7,14 +7,14 @@ LANG=C
 
 MOCKS+=alma+epel-9-x86_64
 MOCKS+=alma+epel-10-x86_64
-MOCKS+=fedora-40-x86_64
+#MOCKS+=fedora-40-x86_64
 
-MOCKCFGS+=awxkitrepo-9-x86_64
-MOCKCFGS+=awxkitrepo-10-x86_64
-MOCKCFGS+=awxkitrepo-f40-x86_64
+MOCKCFGS+=rsshrepo-9-x86_64
+MOCKCFGS+=rsshrepo-10-x86_64
+#MOCKCFGS+=rsshrepo-f40-x86_64
 
-#REPOBASEDIR=/var/www/linux/awxkitrepo
-REPOBASEDIR:=`/bin/pwd`/../awxkitrepo
+#REPOBASEDIR=/var/www/linux/rsshrepo
+REPOBASEDIR:=`/bin/pwd`/../rsshrepo
 
 SPEC := `ls *.spec`
 
